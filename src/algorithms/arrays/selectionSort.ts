@@ -1,6 +1,10 @@
 export function selectionSort(array: number[]) {
   let n = array.length;
 
+  if (n <= 1) {
+    return array;
+  }
+
   for (let i = 0; i < n - 1; i++) {
     let n2 = i;
 

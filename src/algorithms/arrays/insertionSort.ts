@@ -1,6 +1,10 @@
 export function insertionSort(array: number[]) {
   let n = array.length;
 
+  if (n <= 1) {
+    return array;
+  }
+
   for (let i = 1; i < n; i++) {
     let x = array[i];
     let j = i - 1;
