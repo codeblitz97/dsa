@@ -1,1 +1,3 @@
-console.log("Hello via Bun!");
+import { findLowestValue } from './algorithms';
+
+console.log(findLowestValue([224, 211, 21, 5, 7]));
