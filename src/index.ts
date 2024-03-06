@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import {
   bubbleSort,
+  countingSort,
   findLowestValue,
   insertionSort,
   quickSort,
@@ -22,9 +23,8 @@ const measureExecutionTime = (algorithm: Function, array: number[]) => {
 };
 
 const arrayToSort = [
-  -10, 27, -2, 21212, -9, -6, 9, 6, 312, 212, 2787437684764629846982649826498,
-  1371903810938019480914809147, 213, 1313, 13133, 13, 1, 3, 3, 1, 3, 31, 3, 13,
-  13, 3, 1, 33, 1371903810938019480914809147,
+  -10, 27, -2, 21212, -9, -6, 9, 6, 312, 212, 213, 1313, 13133, 13, 1, 3, 3, 1,
+  3, 31, 3, 13, 13, 3, 1, 33,
 ];
 
 const findLowestValueTime = measureExecutionTime(findLowestValue, arrayToSort);
@@ -32,13 +32,14 @@ const bubbleSortTime = measureExecutionTime(bubbleSort, arrayToSort);
 const selectionSortTime = measureExecutionTime(selectionSort, arrayToSort);
 const insertionSortTime = measureExecutionTime(insertionSort, arrayToSort);
 const quickSortTime = measureExecutionTime(quickSort, arrayToSort);
+const countingSortTime = measureExecutionTime(countingSort, arrayToSort);
 
 const fastestTime = Math.min(
-  findLowestValueTime,
   bubbleSortTime,
   selectionSortTime,
   insertionSortTime,
-  quickSortTime
+  quickSortTime,
+  countingSortTime
 );
 
 let fastestAlgorithm = '';
@@ -48,8 +49,12 @@ if (fastestTime === bubbleSortTime) {
   fastestAlgorithm = 'selectionSort';
 } else if (fastestTime === insertionSortTime) {
   fastestAlgorithm = 'insertionSort';
-} else {
+} else if (fastestTime === countingSortTime) {
+  fastestAlgorithm = 'countingSort';
+} else if (fastestTime === quickSortTime) {
   fastestAlgorithm = 'quickSort';
+} else {
+  fastestAlgorithm = 'unknownAlgo';
 }
 
 console.log(
